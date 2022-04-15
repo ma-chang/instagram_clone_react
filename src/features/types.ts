@@ -12,10 +12,10 @@ export interface PROPS_AUTHEN {
 
 export interface PROPS_PROFILE {
   id: number;
-  nickname: string;
+  nickName: string;
   img: File | null;
 }
 
 export interface PROPS_NICKNAME {
-  nickname: string;
+  nickName: string;
 }
