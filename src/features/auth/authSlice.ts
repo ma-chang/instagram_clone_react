@@ -63,7 +63,7 @@ export const fetchAsyncGetMyProfile = createAsyncThunk('profile/get', async () =
 export const fetchAsyncGetProfiles = createAsyncThunk('profiles/get', async () => {
   const res = await axios.get(`${apiUrl}api/profile/`, {
     headers: {
-      Authorization: `Bearer ${localStorage.local}`,
+      Authorization: `Bearer ${localStorage.localJWT}`,
     },
   });
   return res.data;
