@@ -47,7 +47,7 @@ const Auth: React.FC = () => {
 
   return (
     <>
-      # Register Modal
+      {/* # Register Modal */}
       <Modal
         isOpen={openSignUp}
         onRequestClose={async () => {
@@ -132,7 +132,7 @@ const Auth: React.FC = () => {
           )}
         </Formik>
       </Modal>
-      # Login Modal
+      {/* # Login Modal */}
       <Modal
         isOpen={openSignIn}
         onRequestClose={async () => {
