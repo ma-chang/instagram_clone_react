@@ -8,7 +8,7 @@ const apiUrlPost = `${process.env.REACT_APP_DEV_API_URL}api/post/`;
 const apiUrlComment = `${process.env.REACT_APP_DEV_API_URL}api/comment/`;
 
 export const fetchAsyncGetPosts = createAsyncThunk('post/get', async () => {
-  const res = await axios.get(apiUrlPost, { headers: { Authorization: `JWT ${localStorage.localJWT}` } });
+  const res = await axios.get(apiUrlPost, { headers: { Authorization: `Bearer ${localStorage.localJWT}` } });
   return res.data;
 });
 
@@ -17,7 +17,7 @@ export const fetchAsyncNewPost = createAsyncThunk('post/post', async (newPost: P
   uploadData.append('title', newPost.title);
   newPost.img && uploadData.append('img', newPost.img, newPost.img.name);
   const res = await axios.post(apiUrlPost, uploadData, {
-    headers: { 'Content-Type': 'application/json', Authorization: `JWT ${localStorage.localJWT}` },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.localJWT}` },
   });
   return res.data;
 });
@@ -40,23 +40,25 @@ export const fetchAsyncPatchLiked = createAsyncThunk('post/patch', async (liked:
   } else if (currentLiked.length === 1) {
     uploadData.append('title', liked.title);
     const res = await axios.put(`${apiUrlPost}${liked.id}/`, uploadData, {
-      headers: { 'Content-Type': 'application/json', Authorization: `JWT ${localStorage.localJWT}` },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.localJWT}` },
     });
   }
 
   const res = await axios.patch(`${apiUrlPost}${liked.id}/`, uploadData, {
-    headers: { 'Content-Type': 'application/json', Authorization: `JWT ${localStorage.localJWT}` },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.localJWT}` },
   });
   return res.data;
 });
 
 export const fetchAsyncGetComments = createAsyncThunk('comment/get', async () => {
-  const res = await axios.get(apiUrlComment, { headers: { Authorization: `JWT ${localStorage.localJWT}` } });
+  const res = await axios.get(apiUrlComment, { headers: { Authorization: `Bearer ${localStorage.localJWT}` } });
   return res.data;
 });
 
 export const fetchAsyncPostComments = createAsyncThunk('comment/post', async (comment: PROPS_COMMENT) => {
-  const res = await axios.post(apiUrlComment, comment, { headers: { Authorization: `JWT ${localStorage.localJWT}` } });
+  const res = await axios.post(apiUrlComment, comment, {
+    headers: { Authorization: `Bearer ${localStorage.localJWT}` },
+  });
   return res.data;
 });
 
@@ -71,7 +73,7 @@ export const postSlice = createSlice({
         title: '',
         userPost: 0,
         created_on: '',
-        img: '',
+        img: ',',
         liked: [0],
       },
     ],
