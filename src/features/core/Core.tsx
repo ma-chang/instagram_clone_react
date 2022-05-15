@@ -35,11 +35,8 @@ import {
 // import Post from '../post/Post';
 // import EditProfile from './EditProfile';
 // import NewPost from './NewPost';
-
 const StyledBadge = withStyles((theme) => ({
   badge: {
-    backgroundColor: '#44b700',
-    color: '#44b700',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
@@ -97,7 +94,6 @@ const Core: React.FC = () => {
     };
     fetchBootLoader();
   }, [dispatch]);
-
   return (
     <div>
       <Auth />
@@ -114,7 +110,7 @@ const Core: React.FC = () => {
             >
               <MdAddAPhoto />
             </button>
-            <div className='core_logout'>
+            <div className={styles.core_logout}>
               {(isLoadingPost || isLoadingAuth) && <CircularProgress />}
               <Button
                 onClick={() => {
@@ -178,14 +174,14 @@ const Core: React.FC = () => {
                 .reverse()
                 .map((post) => (
                   <Grid key={post.id} item xs={12} md={4}>
-                    <Post
+                    {/* <Post
                       postId={post.id}
                       title={post.title}
                       loginId={profile.userProfile}
                       userPost={post.userPost}
                       imageUrl={post.img}
                       liked={post.liked}
-                    />
+                    /> */}
                   </Grid>
                 ))}
             </Grid>
