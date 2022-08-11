@@ -23,6 +23,8 @@ import {
   setOpenSignUp,
 } from './authSlice';
 
+import { fetchAsyncGetPosts, fetchAsyncGetComments } from '../post/postSlice';
+
 const customStyles = {
   overlay: {
     backgroundColor: '#777777',
@@ -67,8 +69,8 @@ const Auth: React.FC = () => {
               await dispatch(fetchAsyncCreateProfile({ nickName: 'anonymous' }));
 
               await dispatch(fetchAsyncGetProfiles());
-              // await dispatch(fetchAsyncGetPosts());
-              // await dispatch(fetchAsyncGetComments());
+              await dispatch(fetchAsyncGetPosts());
+              await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProfile());
             }
             await dispatch(fetchCredEnd());
@@ -148,9 +150,11 @@ const Auth: React.FC = () => {
             const result = await dispatch(fetchAsyncLogin(values));
 
             if (fetchAsyncLogin.fulfilled.match(result)) {
+              console.log('fulfilled');
+
               await dispatch(fetchAsyncGetProfiles());
-              // await dispatch(fetchAsyncGetPosts());
-              // await dispatch(fetchAsyncGetComments());
+              await dispatch(fetchAsyncGetPosts());
+              await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProfile());
             }
             await dispatch(fetchCredEnd());

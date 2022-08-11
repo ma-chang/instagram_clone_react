@@ -42,7 +42,7 @@ export const fetchAsyncUpdateProfile = createAsyncThunk('profile/put', async (pr
   const uploadData = new FormData();
   uploadData.append('nickName', profile.nickName);
   profile.img && uploadData.append('img', profile.img, profile.img.name);
-  const res = await axios.put(`${apiUrl}api/profile/${profile.id}`, uploadData, {
+  const res = await axios.put(`${apiUrl}api/profile/${profile.id}/`, uploadData, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.localJWT}`,
