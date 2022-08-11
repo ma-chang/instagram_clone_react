@@ -33,8 +33,8 @@ import {
 } from '../post/postSlice';
 
 import Post from '../post/Post';
-// import EditProfile from './EditProfile';
-// import NewPost from './NewPost';
+import EditProfile from './EditProfile';
+import NewPost from './NewPost';
 const StyledBadge = withStyles((theme) => ({
   badge: {
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
@@ -97,6 +97,8 @@ const Core: React.FC = () => {
   return (
     <div>
       <Auth />
+      <EditProfile />
+      <NewPost />
       <div className={styles.core_header}>
         <h1 className={styles.core_title}>SNS Clone</h1>
         {profile?.nickName ? (
@@ -105,7 +107,6 @@ const Core: React.FC = () => {
               className={styles.core_btnModal}
               onClick={() => {
                 dispatch(setOpenNewPost());
-                dispatch(setOpenProfile());
               }}
             >
               <MdAddAPhoto />
@@ -127,7 +128,6 @@ const Core: React.FC = () => {
                 className={styles.core_btnModal}
                 onClick={() => {
                   dispatch(setOpenProfile());
-                  dispatch(resetOpenNewPost());
                 }}
               >
                 <StyledBadge
